@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+    <title>Frontend 3 Contest I Project March 24</title>
+
+    <style>
+        body{ 
+            margin: 0;
+            padding: 0;           
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background-color: rgb(21, 19, 19);
+            color: white; 
+            justify-content: center;
+        }
+        body,.btnbox{
+            display: flex;
+        }
+
+        #main{
+            width: 65%;
+            min-height: 100vh;
+            background-color: rgb(0, 0, 0);
+            padding: 2.5rem 0px 0px 3rem;
+            font-size: 32px;
+            font-weight: 400;
+        }
+        .p{
+            margin: auto;
+            padding-top: 1rem;
+        }
+        .middle,.Errortext{
+            font-size: 12px;
+            font-weight: 200;
+        }
+        .line{
+            border:0.01px solid wheat;
+            width:140px;
+            margin-top: 6px;
+        }
+        .Errortext{
+            color: red;
+        }
+        .btn1,.btn2,.btn3{
+            padding: 8px;
+            width:120px;
+            background-color: white;
+            border: none;
+            margin: 30px 12px 0px 0px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .btn3{            
+            background-color: black;
+            color: rgb(186, 179, 179);
+            border: 1.25px solid rgb(186, 179, 179);
+        }       
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div>Counter using HTML</div>
+        <div class="middle p">Your Current Count is : 5</div>
+        <div class='line'></div>
+        <div class="Errortext p"></div>
+        <div class="btnbox">
+            <button class="btn1">Decerement</button>
+            <button class="btn2">Incerement</button>
+            <span><button class="btn3">Clear</button></span>
+        </div>
+    </div>
+
+    <script>
+        //geting Element by Query Selector.
+        let Errortext = document.querySelector('.Errortext');        
+        let decButton = document.querySelector('.btn1');
+        let incButton = document.querySelector('.btn2');
+        let clrButton = document.querySelector('.btn3');
+
+        //function to update text of middle div.
+        function updttxt(cnt){
+            let counterText = document.querySelector('.middle');
+            counterText.innerHTML = 'Your Current Count is :' + " " + cnt;
+        }
+
+        //function to set display property of clear button.
+        function clearApear(disp){
+            clrButton.style.display = disp;
+        }
+        //initializing count value
+        let count = 5;       
+        
+        incButton.addEventListener('click',()=>{
+            count++;
+            if (count>0) {                
+                updttxt(count);
+                Errortext.innerHTML='';
+                if(count>1) clearApear("block");
+            }
+        });
+
+        decButton.addEventListener('click',()=>{
+            if(count > 0){
+                count--;
+                updttxt(count);
+                if(count <= 1) clearApear("none");
+            }
+            else{
+                updttxt(count);
+                Errortext.innerHTML="Error : Cannot go below 0";                
+            }
+        })
+
+        clrButton.addEventListener('click',()=>{
+            count = 0;
+            updttxt(count);
+            clearApear("none"); 
+        })
+
+    </script>
+</body>
+</html>
